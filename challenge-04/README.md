@@ -125,9 +125,31 @@ deve retornar a frase: "O carro já está lotado!"
 parâmetro for ultrapassar o limite de assentos do carro, então você deve
 mostrar quantos assentos ainda podem ser ocupados, com a frase:
 "Só cabem mais [QUANTIDADE_DE_PESSOAS_QUE_CABEM] pessoas!"
+
 - Se couber somente mais uma pessoa, mostrar a palavra "pessoa" no retorno
 citado acima, no lugar de "pessoas".
 */
+
+carro.adicionarPessoa = function(num_Pessoas) {
+    var total_Pessoas = this.quantidadeDePessoas + num_Pessoas;
+
+    if(this.quantidadeDePessoas === this.assentos) {
+        return "O carro já está lotado!";
+    }
+
+    if(total_Pessoas > this.assentos) {
+        var qntPes = this.assentos - this.quantidadeDePessoas;
+        if (qntPes === 1) {
+            return `Só cabe mais ${qntPes} pessoa!`;
+        } else {
+            return `Só cabem mais ${qntPes} pessoas!`;
+        }
+        
+    }
+
+    this.quantidadeDePessoas += num_Pessoas;
+    return `Já temos ${total_Pessoas} pessoas no carro!`
+}
 
 
 
@@ -139,38 +161,61 @@ retornar algum valor.
 
 Qual a cor atual do carro?
 */
-?
+
+carro.cor // "Prata"
 
 // Mude a cor do carro para vermelho.
-?
+
+carro.cor = "Vermelho"
 
 // E agora, qual a cor do carro?
-?
+
+ carro.cor //"Vermelho"
 
 // Mude a cor do carro para verde musgo.
-?
+
+carro.cor = "Verde Musgo"
 
 // E agora, qual a cor do carro?
-?
+
+ carro.cor //"Verde Musgo"
 
 // Qual a marca e modelo do carro?
-?
+
+carro.obterMarcaModelo() // "Esse carro é um Renault Clio!"
 
 // Adicione 2 pessoas no carro.
-?
+
+carro.adicionarPessoa(2) // "Já temos 2 pessoas no carro!"
 
 // Adicione mais 4 pessoas no carro.
-?
+
+carro.adicionarPessoa(4) // "Só cabem mais 3 pessoas!"
 
 // Faça o carro encher.
-?
+
+carro.adicionarPessoa(3) // "Já temos 5 pessoas no carro!"
+carro.adicionarPessoa(1) // "O carro já está lotado!"
 
 // Tire 4 pessoas do carro.
-?
+
+carro.removerPessoa = function(num_Pes) {
+    this.quantidadeDePessoas -= num_Pes;
+	if(num_Pes === 1) {
+		return `${num_Pes} saiu do carro!`;
+	}else {
+    return `${num_Pes} saíram do carro!`;
+    }
+}
+
+carro.removerPessoa(4) // "4 saíram do carro!"
 
 // Adicione 10 pessoas no carro.
-?
+
+carro.adicionarPessoa(10) //"Só cabem mais 4 pessoas!"
 
 // Quantas pessoas temos no carro?
-?
+
+carro.quantidadeDePessoas // 1
+
 ```
